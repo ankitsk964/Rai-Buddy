@@ -1,0 +1,199 @@
+/* Import Montserrat Font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+/* General Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1a1a1a, #2c2c2c, #ff8c00);
+    background-size: cover;
+    background-attachment: fixed;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+/* Logo */
+.logo {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+/* Login Container */
+.login-container {
+    background-color: rgba(30, 30, 30, 0.9);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    animation: fade-in 0.5s ease forwards;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    background-color: rgba(30, 30, 30, 0.95);
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    animation: fade-in 0.5s ease forwards;
+}
+
+/* Headings */
+h1, h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #ff8c00;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* Labels */
+label {
+    font-family: 'Montserrat', sans-serif;
+    color: #ff8c00;
+    font-weight: 600;
+}
+
+/* Input Fields */
+.input-field,
+.select-field {
+    margin: 10px 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    background-color: #333;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+    border: 1px solid #ff8c00;
+    box-shadow: 0px 0px 5px 1px #ff8c00;
+}
+
+/* User Table */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.user-table th, .user-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-table th {
+    background-color: #ff8c00;
+    color: white;
+}
+
+.user-table td {
+    color: white;
+}
+
+/* Buttons */
+button.action-button,
+button.login-button {
+    background-color: #ff8c00;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    font-weight: 600;
+    margin: 5px;
+}
+
+button.action-button:hover,
+button.login-button:hover {
+    background-color: #e07b00;
+    transform: scale(1.05);
+}
+
+/* Error Message */
+.error-message {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Add User Form */
+.add-user-form {
+    display: none; /* Hidden by default */
+    background-color: #333;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-top: 30px;
+    width: 100%;
+    max-width: 500px;
+    text-align: left;
+}
+
+.add-user-form h3 {
+    color: #ff8c00;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Add User Form Inputs */
+.add-user-form .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.add-user-form input[type="text"],
+.add-user-form input[type="email"],
+.add-user-form input[type="password"],
+.add-user-form select {
+    width: 100%;
+    padding: 10px;
+    background-color: #444;
+    border: 1px solid #555;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.add-user-form input[type="text"]::placeholder,
+.add-user-form input[type="email"]::placeholder,
+.add-user-form input[type="password"]::placeholder {
+    color: #999;
+    font-size: 0.9em;
+}
+
+/* Animations */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

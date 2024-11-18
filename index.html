@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Function to validate student login
+        function validateStudentLogin(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const username = document.getElementById('studentUsername').value;
+            const password = document.getElementById('studentPassword').value;
+
+            // Get stored users from localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Check if entered username and password match any user in the system
+            const user = users.find(u => u.username === username && u.password === password);
+
+            if (user) {
+                alert('Login successful!');
+                // Redirect to the course selection page or dashboard
+                window.location.href = 'courses.html';
+            } else {
+                // Display an error message if the login details are incorrect
+                document.getElementById('errorMessage').innerText = "Invalid Username or Password!";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <img src="kmitl.png" alt="Logo" class="logo">
+        <h1>Student Login</h1>
+        <!-- Display error message -->
+        <p id="errorMessage" class="error-message"></p>
+        <form id="studentLoginForm" onsubmit="validateStudentLogin(event)">
+            <div class="input-field">
+                <label for="studentUsername">Username</label>
+                <input type="text" id="studentUsername" placeholder="Enter Username" required>
+            </div>
+            <div class="input-field">
+                <label for="studentPassword">Password</label>
+                <input type="password" id="studentPassword" placeholder="Enter Password" required>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Manage Users</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <img src="kmitl.png" alt="Logo" class="logo">
+        <h1>Admin Dashboard</h1>
+        <h2>Manage User Data</h2>
+
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+                <!-- Dynamic content will be inserted here -->
+            </tbody>
+        </table>
+
+        <div class="action-buttons">
+            <button class="action-button" onclick="toggleAddUserForm()">Add User</button>
+        </div>
+
+        <!-- Add User Form -->
+        <div class="add-user-form" id="addUserForm">
+            <h3>Add New User</h3>
+            <div class="input-group">
+                <input type="text" id="newUsername" placeholder="Enter Username" required>
+                <input type="email" id="newEmail" placeholder="Enter Email" required>
+                <input type="password" id="newPassword" placeholder="Enter Password" required>
+                <select id="newRole">
+                    <option value="User">User</option>
+                    <option value="Admin">Admin</option>
+                </select>
+            </div>
+            <div class="action-buttons">
+                <button class="action-button" onclick="addUser()">Add User</button>
+                <button class="action-button close-btn" onclick="toggleAddUserForm()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize user data from localStorage
+        function initializeUserData() {
+            return JSON.parse(localStorage.getItem('users')) || [];
+        }
+
+        // Render users in the table
+        function renderUsers() {
+            const users = initializeUserData();
+            const userTableBody = document.getElementById('userTableBody');
+            userTableBody.innerHTML = '';
+
+            users.forEach((user, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.username}</td>
+                    <td>${user.email}</td>
+                    <td>${user.role}</td>
+                    <td>
+                        <button class="action-button delete-btn" onclick="deleteUser(${index})">Delete</button>
+                    </td>
+                `;
+                userTableBody.appendChild(row);
+            });
+        }
+
+        // Add a new user with role
+        function addUser() {
+            const username = document.getElementById('newUsername').value;
+            const email = document.getElementById('newEmail').value;
+            const password = document.getElementById('newPassword').value;
+            const role = document.getElementById('newRole').value;
+
+            if (username && email && password) {
+                const users = initializeUserData();
+                users.push({ username, email, password, role });
+                localStorage.setItem('users', JSON.stringify(users));
+                renderUsers();
+                alert("User added successfully!");
+                toggleAddUserForm();
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        // Delete a user
+        function deleteUser(index) {
+            const users = initializeUserData();
+            users.splice(index, 1);
+            localStorage.setItem('users', JSON.stringify(users));
+            renderUsers();
+            alert("User deleted successfully!");
+        }
+
+        // Toggle Add User Form visibility
+        function toggleAddUserForm() {
+            const form = document.getElementById('addUserForm');
+            form.style.display = form.style.display === 'none' || form.style.display === '' ? 'block' : 'none';
+        }
+
+        // Initialize users on page load
+        window.onload = function() {
+            renderUsers();
+        };
+    </script>
+</body>
+</html>

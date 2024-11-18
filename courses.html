@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Selector</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container slide-in">
+        <img src="kmitl.png" alt="Logo" class="logo">
+        <h1 class="fade-in">Select Your Course</h1>
+        <form>
+            <label for="course">Select a Course:</label>
+            <select id="course" class="custom-dropdown pulse">
+                <option value="">--Select a course--</option>
+                <option value="1">Web Development</option>
+                <option value="2">Data Science</option>
+                <option value="3">Robotics</option>
+                <option value="4">Artificial Intelligence</option>
+                <option value="5">Machine Learning</option>
+            </select>
+        </form>
+
+        <div id="courseDetails" class="details fade-in" style="display: none;">
+            <h2>Course Details</h2>
+            <p id="courseName"></p>
+            <p id="courseDescription"></p>
+            <p id="courseDuration"></p>
+            <p id="courseInstructor"></p>
+        </div>
+    </div>
+
+    <script>
+        const courses = {
+            "1": {
+                name: "Web Development",
+                description: "Learn HTML, CSS, JavaScript, and modern frameworks like React to build dynamic web applications.",
+                duration: "6 months",
+                instructor: "John Doe"
+            },
+            "2": {
+                name: "Data Science",
+                description: "Master data analysis, visualization, and machine learning techniques using Python and R.",
+                duration: "8 months",
+                instructor: "Jane Smith"
+            },
+            "3": {
+                name: "Robotics",
+                description: "Explore robotics and automation, build robots using ROS, Arduino, and Python.",
+                duration: "5 months",
+                instructor: "Alan Brown"
+            },
+            "4": {
+                name: "Artificial Intelligence",
+                description: "Understand the concepts of AI and develop systems capable of intelligent behavior using neural networks.",
+                duration: "6 months",
+                instructor: "Sarah Lee"
+            },
+            "5": {
+                name: "Machine Learning",
+                description: "Dive deep into algorithms that enable machines to learn and improve from data, using Python.",
+                duration: "7 months",
+                instructor: "Michael Clark"
+            }
+        };
+
+        document.getElementById('course').addEventListener('change', function() {
+            const courseId = this.value;
+            if (courseId && courses[courseId]) {
+                const course = courses[courseId];
+                document.getElementById('courseName').textContent = `Course: ${course.name}`;
+                document.getElementById('courseDescription').textContent = course.description;
+                document.getElementById('courseDuration').textContent = `Duration: ${course.duration}`;
+                document.getElementById('courseInstructor').textContent = `Instructor: ${course.instructor}`;
+                document.getElementById('courseDetails').style.display = 'block';
+                document.getElementById('courseDetails').classList.add('fade-in');
+            } else {
+                document.getElementById('courseDetails').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

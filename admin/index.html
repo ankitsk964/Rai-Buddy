@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Role-Based Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Function to validate login details
+        function validateLogin(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Retrieve users from localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.username === username && u.password === password);
+
+            if (user) {
+                // Redirect based on user role
+                if (user.role === "Admin") {
+                    window.location.href = 'admin_dashboard.html';
+                }
+                else {
+                    document.getElementById('errorMessage').innerText = "Invalid Username or Password!";
+                }
+            } else {
+                document.getElementById('errorMessage').innerText = "Invalid Username or Password!";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <img src="kmitl.png" alt="Logo" class="logo">
+        <h1>Admin Login</h1>
+        <!-- Display error message -->
+        <p id="errorMessage" class="error-message"></p>
+        <form id="loginForm" onsubmit="validateLogin(event)">
+            <div class="input-field">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter Username" required>
+            </div>
+            <div class="input-field">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter Password" required>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+    </div>
+</body>
+</html>
